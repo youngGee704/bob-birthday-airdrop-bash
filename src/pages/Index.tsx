@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
-import { Gift, PartyPopper, Cake, MessageSquare, WhatsApp } from 'lucide-react';
+import { Gift, PartyPopper, Cake, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import AirdropClaim from '@/components/AirdropClaim';
+import AudioPlayer from '@/components/AudioPlayer';
 
 const Index = () => {
   const [showAirdrop, setShowAirdrop] = useState(true);
@@ -17,6 +18,7 @@ const Index = () => {
   if (claimed) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-indigo-50 p-4">
+        <AudioPlayer />
         <div className="max-w-lg w-full text-center space-y-8 animate-fade-in">
           <PartyPopper className="w-16 h-16 mx-auto text-yellow-500 animate-bounce" />
           <h1 className="text-4xl font-bold text-purple-700">
@@ -37,8 +39,9 @@ const Index = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors"
+              onClick={() => document.getElementById('clickSound')?.play()}
             >
-              <WhatsApp className="w-5 h-5" />
+              <MessageSquare className="w-5 h-5" />
               Chat on WhatsApp
             </a>
           </div>
@@ -52,6 +55,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-indigo-50 p-4">
+      <AudioPlayer />
       <div className="max-w-lg w-full text-center space-y-8">
         <div className="flex justify-center items-center gap-3">
           <Gift className="w-12 h-12 text-purple-600" />

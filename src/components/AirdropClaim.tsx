@@ -29,9 +29,23 @@ const AirdropClaim: React.FC<AirdropClaimProps> = ({ onComplete }) => {
 
   useEffect(() => {
     if (timeLeft === 0) {
+      // Play success sound when airdrop is claimed
+      const successSound = document.getElementById('successSound') as HTMLAudioElement;
+      if (successSound) {
+        successSound.play().catch(e => console.log('Success sound play failed:', e));
+      }
       onComplete();
     }
   }, [timeLeft, onComplete]);
+
+  const handleNextStep = () => {
+    // Play click sound effect
+    const clickSound = document.getElementById('clickSound') as HTMLAudioElement;
+    if (clickSound) {
+      clickSound.play().catch(e => console.log('Click sound play failed:', e));
+    }
+    setStep(step + 1);
+  };
 
   const steps = [
     {
@@ -81,7 +95,7 @@ const AirdropClaim: React.FC<AirdropClaimProps> = ({ onComplete }) => {
 
       {step < 3 ? (
         <Button
-          onClick={() => setStep(step + 1)}
+          onClick={handleNextStep}
           className="w-full bg-purple-600 hover:bg-purple-700"
         >
           {step === 1 ? "Connect Wallet" : "Verify Identity"}
