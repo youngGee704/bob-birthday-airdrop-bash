@@ -12,7 +12,7 @@ const AudioPlayer: React.FC = () => {
     if (!bgMusic) {
       const music = document.createElement('audio');
       music.id = 'bgMusic';
-      music.src = 'https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3';
+      music.src = 'https://open.spotify.com/track/5GyaXqMfcIGHfmTUITFacS?si=e81c6e150d6940ac';
       music.loop = true;
       document.body.appendChild(music);
       
@@ -63,7 +63,7 @@ const AudioPlayer: React.FC = () => {
         size="icon" 
         onClick={() => {
           toggleMute();
-          document.getElementById('clickSound')?.play();
+          (document.getElementById('clickSound') as HTMLAudioElement)?.play();
         }}
         className="bg-white/80 backdrop-blur-sm rounded-full"
       >

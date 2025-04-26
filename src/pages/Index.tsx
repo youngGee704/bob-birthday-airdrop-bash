@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Gift, PartyPopper, Cake, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -9,10 +8,20 @@ import AudioPlayer from '@/components/AudioPlayer';
 const Index = () => {
   const [showAirdrop, setShowAirdrop] = useState(true);
   const [claimed, setClaimed] = useState(false);
+  const [copied, setCopied] = useState(false); // for "copied" text
+
+  const airtimeCode = "SCRATCH WITH YOUR FINGER😂"; // <-- replace with real code
+  const airtimeCodeRaw = "*311*94333886226712674#"; // <-- same code without spaces
 
   const handleAirdropComplete = () => {
     setClaimed(true);
     setShowAirdrop(false);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(airtimeCodeRaw);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // copied text disappears after 2 seconds
   };
 
   if (claimed) {
@@ -27,11 +36,42 @@ const Index = () => {
           <p className="text-xl text-gray-700">
             Congratulations on claiming your special birthday airdrop! 🚀
           </p>
-          <div className="p-6 bg-white rounded-lg shadow-xl">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+
+          {/* Airtime Gift Section */}
+          <div className="p-6 bg-white rounded-lg shadow-xl space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-800">
+              🎁 Your Birthday Gift 🎁
+            </h2>
+            <p className="text-gray-600">
+              Here's a ₦500 MTN Mobile Airtime Code just for you:
+            </p>
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={airtimeCode}
+                readOnly
+                className="border border-gray-300 rounded-md px-4 py-2 w-full text-center font-mono text-lg text-purple-700 bg-gray-100"
+              />
+              <Button
+                onClick={handleCopy}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md"
+              >
+                Copy
+              </Button>
+            </div>
+            {copied && (
+              <p className="text-green-600 text-sm font-semibold mt-2 animate-fade-in">
+                ✅ Copied!
+              </p>
+            )}
+          </div>
+
+          {/* USDT / Naira Service */}
+          <div className="p-6 bg-white rounded-lg shadow-xl space-y-4">
+            <h2 className="text-2xl font-semibold text-gray-800">
               Need USDT/NAIRA Exchange? 💱
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600">
               Contact B.O.B for professional crypto services
             </p>
             <a
@@ -39,7 +79,7 @@ const Index = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors"
-              onClick={() => document.getElementById('clickSound')?.play()}
+              onClick={() => (document.getElementById('clickSound') as HTMLAudioElement)?.play()}
             >
               <MessageSquare className="w-5 h-5" />
               Chat on WhatsApp

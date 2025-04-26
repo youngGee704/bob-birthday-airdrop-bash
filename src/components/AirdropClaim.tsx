@@ -11,14 +11,14 @@ interface AirdropClaimProps {
 const AirdropClaim: React.FC<AirdropClaimProps> = ({ onComplete }) => {
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(90); // 1.5 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(10); // 1.5 minutes in seconds
 
   useEffect(() => {
     if (step === 3 && timeLeft > 0) {
       const timer = setInterval(() => {
         setTimeLeft((prev) => {
           const newTime = prev - 1;
-          setProgress((90 - newTime) * (100 / 90));
+          setProgress((10 - newTime) * (100 / 90));
           return newTime;
         });
       }, 1000);
