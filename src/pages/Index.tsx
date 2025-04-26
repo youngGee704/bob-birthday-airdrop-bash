@@ -34,7 +34,15 @@ const Index = () => {
             🎉 Happy Birthday B.O.B! 🎉
           </h1>
           <p className="text-xl text-gray-700">
-            Congratulations on claiming your special birthday airdrop! 🚀
+            Congratulations on claiming your special birthday airdrop! 🚀 ||
+
+            🎉🎂
+Wishing you a year filled with endless success, unstoppable joy, More USDT , NO DUST and all the blessings your heart desires.
+Keep shining, keep inspiring, and keep being the amazing person you are.
+🚀 Here's to more wins, more dreams coming true, and many more birthdays to celebrate!
+
+Much love and respect, 💜
+— From your GRIDVEM
           </p>
 
           {/* Airtime Gift Section */}
